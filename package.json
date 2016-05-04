@@ -1,0 +1,19 @@
+{
+  "scripts": {
+    "test": "rollup -c -i test/index.js -o dist/test.js -f cjs && node dist/test.js",
+    "browser": "rollup -c -i src/browser.js -o dist/browser.js",
+    "build": "rollup -c"
+  },
+  "dependencies": {
+    "nprogress": "^0.2.0",
+    "riot": "^2.3.16"
+  },
+  "jsnext:main": "src/index.js",
+  "name": "riot-stack",
+  "version": "0.1.0",
+  "license": "MIT",
+  "author": "Anton Heryanto",
+  "devDependencies": {
+    "tape": "^4.5.0"
+  }
+}
