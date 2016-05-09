@@ -57,10 +57,10 @@ export function router (opts) {
     // execute service action
     }).then((user) => {
       start()
-      return s(p)
+      return Promise.resolve(s(p))
     }).then((r) => {
       if (!r) r = {}
-
+      r.user = auth.current()
       r.params = p
       r.action = action
       r.http = http

@@ -5,7 +5,7 @@ export default function stack (opts = {}) {
     transform (code, id) {
       if (id.indexOf('.html') < 0) return code
       const o = compile(code).replace(/riot./g, '')
-      return `import { route, tag2, on, mount } from 'riot'\n ${o}`
+      return `import { route, tag2, mount, on, trigger } from 'riot'\n ${o}`
     },
     transformBundle (code) {
       return `${code}\n//# sourceURL=${opts.name}`

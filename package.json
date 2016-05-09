@@ -1,7 +1,7 @@
 {
   "scripts": {
     "test": "rollup -c -i test/index.js -o dist/test.js -f cjs && node dist/test.js",
-    "browser": "rollup -c -i src/browser.js -o dist/browser.js",
+    "browser": "rollup -c -i src/browser.js -o dist/browser.js -f iife",
     "build": "rollup -c"
   },
   "dependencies": {

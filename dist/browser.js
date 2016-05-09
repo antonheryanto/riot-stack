@@ -5,7 +5,7 @@ var stack = (function (riot) { 'use strict';
       transform (code, id) {
         if (id.indexOf('.html') < 0) return code
         const o = riot.compile(code).replace(/riot./g, '')
-        return `import { route, tag2, on, mount } from 'riot'\n ${o}`
+        return `import { route, tag2, mount, on, trigger } from 'riot'\n ${o}`
       },
       transformBundle (code) {
         return `${code}\n//# sourceURL=${opts.name}`
