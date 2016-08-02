@@ -4,7 +4,6 @@ import { trigger, route } from 'riot'
 export { login, logout, current, validate }
 
 function save (r) {
-  console.log('save', r)
   if (!r || r.errors) return r || {}
   sessionStorage.setItem('user', JSON.stringify(r))
   trigger('login', r)

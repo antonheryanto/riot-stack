@@ -25,7 +25,6 @@ function Edit () {
       const t = e.target
       const v = t.validity
       if (!t.name) return
-      console.l
       this.model[t.name] = t.value
       if (v.valid) delete this.errors[t.name]
       if (v.valueMissing) this.errors[t.name] = 'is required'
