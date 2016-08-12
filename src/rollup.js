@@ -4,15 +4,14 @@ export default function stack (opts = {}) {
   return {
     transform (code, id) {
       if (id.indexOf('.html') < 0) return code
-      const o = compile(code).replace(/riot./g, '')
-      return `import { route, tag2, mount, on, trigger } from 'riot'\n ${o}`
-    },
-    transformBundle (code) {
-      return `${code}\n//# sourceURL=${opts.name}`
+      const o = compile(code).replace(/riot\.tag2/g, 'tag2')
+      return {
+        code: `import { tag2 } from 'riot'\n ${o}`,
+        map: { mappings: '' }
+      }
     },
     options (o) {
       o.external = ['riot', 'NProgress']
-      opts.name = o.entry.split('/').pop()
     },
     intro () {
       return 'riot.observable(riot)\n'
