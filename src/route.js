@@ -65,8 +65,8 @@ export function router (opts) {
       r.action = action
       r.http = http
       return mount(main, tag, r)
-    }).catch((e) => console.error('service error', e)).then((e) => {
-      if (e && !e[0]) console.error('tag not found', e)
+    }).catch((e) => console.error(tag, 'service error', e)).then((e) => {
+      if (e && !e[0]) console.error('tag', tag, 'not found', e)
 
       done()
     })
