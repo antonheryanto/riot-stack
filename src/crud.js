@@ -23,12 +23,10 @@ function Edit () {
     this.errors = {}
     this.validate = (e) => {
       const t = e.target
-      const v = t.validity
       if (!t.name) return
       this.model[t.name] = t.value
-      if (v.valid) delete this.errors[t.name]
-      if (v.valueMissing) this.errors[t.name] = 'is required'
-      if (v.typeMismatch) this.errors[t.name] = 'type is mismatch'
+      if (t.checkValidity()) delete this.errors[t.name]
+      else this.errors[t.name] = t.validationMessage
       this.update()
     }
     document.addEventListener('change', this.validate)
@@ -37,10 +35,11 @@ function Edit () {
 
   this.save = function (e) {
     e.preventDefault()
+    const t = e.target
     const redirect = this.opts.redirect || this.opts.api
     if (Object.keys(this.errors).length > 0) return
 
-    return post(this.opts.api, e.target).then((r) => {
+    return post(this.opts.api, t).then((r) => {
       if (!r.errors) return route(redirect)
 
       this.errors = r.errors
