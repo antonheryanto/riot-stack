@@ -57,7 +57,7 @@ function get (url, arg) {
 function post (url, data) {
   if (!data) return Promise.reject('no data provided')
 
-  const opts = {method: 'post'}
+  const opts = {method: 'post', headers: {}}
   if (data instanceof HTMLElement) {
     opts.body = new FormData(data)
   } else {
@@ -77,7 +77,7 @@ function remove (url, arg) {
 
 function req (path, opts = {}) {
   opts.credentials = 'same-origin'
-  opts.headers = opts.header || {}
+  opts.headers = opts.headers || {}
   const u = current()
   if (u.token) opts.headers['Authorization'] = `Bearer ${u.token}`
 
