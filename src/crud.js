@@ -10,8 +10,9 @@ function Index () {
 
     const m = e.item.m || e.item
     return remove(this.opts.api, {id: m.id}).then((r) => {
-      if (!r || r.errors) return
-      m._destroy = true
+      if (!r) return
+      m._destroy = !r.error
+      this.error = r.error
       this.update()
     })
   }
