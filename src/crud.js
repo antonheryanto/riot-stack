@@ -25,6 +25,7 @@ function Edit () {
     this.validate = (e) => {
       const t = e.target
       if (!t.name) return
+      // handle checkboxes and radios (array input)
       this.model[t.name] = t.value
       if (t.checkValidity()) delete this.errors[t.name]
       else this.errors[t.name] = t.validationMessage

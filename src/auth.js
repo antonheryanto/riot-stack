@@ -1,7 +1,7 @@
 /* global sessionStorage  */
 import { get, post, remove } from './http'
 import { trigger, route } from 'riot'
-export { login, logout, current, validate }
+export { login, logout, current, validate, save }
 
 function save (r) {
   if (!r || r.error) return r || {}
