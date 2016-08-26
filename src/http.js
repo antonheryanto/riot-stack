@@ -17,11 +17,14 @@ function valid (r) {
   if (r.status > 199 && r.status < 300) return r
   if (r.status === 401) {
     logout()
-    return Promise.reject('unauthorized')
+    return Promise.reject('not authenticated')
   }
-  const error = new Error(r.statusText)
-  error.response = r
-  throw error
+  console.error(r.status, r.statusText)
+  return r
+  // FIXME send to log manager
+  // const error = new Error(r.statusText)
+  // error.response = r
+  // throw error
 }
 
 function query (arg) {

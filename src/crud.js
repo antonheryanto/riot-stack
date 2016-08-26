@@ -27,12 +27,12 @@ function Edit () {
       if (!t.name) return
       // handle checkboxes and radios (array input)
       this.model[t.name] = t.value
-      if (t.checkValidity()) delete this.errors[t.name]
+      if (t.validity.valid) delete this.errors[t.name]
       else this.errors[t.name] = t.validationMessage
       this.update()
     }
-    document.addEventListener('change', this.validate)
-    document.addEventListener('invalid', this.validate)
+    document.addEventListener('change', this.validate, false)
+    document.addEventListener('invalid', this.validate, true)
   }
 
   this.save = function (e) {
@@ -42,9 +42,9 @@ function Edit () {
     if (Object.keys(this.errors).length > 0) return
 
     return post(this.opts.api, t).then((r) => {
-      if (!r.errors) return route(redirect)
-
-      this.errors = r.errors
+      if (!r.error) return route(redirect)
+      this.error = r.error
+      this.errors = r.error.errors || {}
       this.update()
     })
   }
